@@ -1,5 +1,6 @@
 package tn.esprit.spring.khaddem;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -19,7 +20,9 @@ import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
+@Slf4j
 public class EtudiantServiceImplTest {
     @InjectMocks
     private EtudiantServiceImpl etudiantService;
@@ -54,8 +57,16 @@ public class EtudiantServiceImplTest {
 
         List<Etudiant> result = etudiantService.retrieveAllEtudiants();
 
-        // Intentionally cause an error by checking for a different condition
-        assertNotEquals(etudiants.size(), result.size());}
+        // Vérification du résultat
+        if (etudiants.size() == result.size()) {
+            log.info("Le test a réussi : La taille de la liste correspond.");
+        } else {
+            log.error("Le test a échoué : La taille de la liste ne correspond pas.");
+        }
+
+        // Utilisez des assertions pour vérifier les conditions attendues
+        assertEquals(etudiants.size(), result.size()+1);
+    }
     @Test
     public void testAddEtudiant() {
         Etudiant etudiant = new Etudiant(/* Initialize etudiant object */);
