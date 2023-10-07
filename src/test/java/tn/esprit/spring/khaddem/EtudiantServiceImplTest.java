@@ -65,7 +65,7 @@ public class EtudiantServiceImplTest {
         }
 
         // Utilisez des assertions pour vérifier les conditions attendues
-        assertEquals(etudiants.size(), result.size()+1);
+        assertEquals(etudiants.size(), result.size());
     }
     @Test
     public void testAddEtudiant() {
